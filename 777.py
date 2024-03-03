@@ -9,3 +9,4 @@ while number != number_user:
     elif number_user < number:
         print('Слишком мало, попробуйте еще раз')
 print('Вы угадали, поздравляем!')
+print('Вы угадали, поздравляем!')
