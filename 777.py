@@ -1,7 +1,7 @@
 from random import *
 number = randint(1, 100)
 number_user = bool
-print('Попробуй отгадать число в диапазоне от 1 до 5 включительно :')
+print('Добро пожаловать в числовую угадайку')
 while number != number_user:
     number_user = int(input())
     if number_user > number:
