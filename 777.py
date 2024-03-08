@@ -164,3 +164,86 @@
 #             print('Извини не понял ответа, сыграем ещё ? ')
 # #****************************************************************
 # #****************************************************************
+
+
+
+# Подключите модуль random;
+# Создайте строковые константы:
+# Напишите функцию generate_password(), которая принимает два аргумента:
+#
+# length: длину пароля;
+# chars: алфавит из символов которого состоит пароль;
+# и возвращает пароль.
+# Используя цикл for, сгенерируйте необходимое количество паролей.
+
+# #*******************************************
+from random import *
+
+digits = '0123456789'
+lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'
+uppercase_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+punctuation = '!#$%&*+-=?@^_'
+ambiguous_characters = 'il1Lo0O'
+chars = ''
+
+quantity = int(input('Количество паролей для генерации : '))
+# print(quantity)
+long = int(input('Длину одного пароля : ')) #
+# print(long)
+
+numbers = (input('Включать ли цифры  ? да или нет : ').lower()) #
+print('цифры будут включены в пароль')
+small_letter = (input('Включать ли строчные буквы ? да или нет : ').lower()) #
+print('строчные буквы будут включены в пароль')
+big_letter = (input('Включать ли прописные буквы ? да или нет : ').lower()) #
+print('прописные буквы будут включены в пароль')
+symbol = (input('Включать ли символы ? да или нет : ').lower()) #
+print('символы будут включены в пароль')
+symbol_ambiguous = (input('Исключать ли неоднозначные символы ? да или нет : ').lower()) #
+print('неоднозначные символы будут исключены из пароля')
+
+if numbers == 'да':
+    chars += digits
+    # print('цифры будут включены в пароль')
+elif small_letter == 'да':
+    chars += lowercase_letters
+    # print('строчные буквы будут включены в пароль')
+elif big_letter == 'да':
+    chars += uppercase_letters
+    # print('прописные буквы будут включены в пароль')
+elif symbol == 'да':
+    chars += punctuation
+    # print('символы будут включены в пароль')
+elif symbol_ambiguous == 'да':
+    # print('неоднозначные символы будут исключены из пароля')
+    for i in range(len(chars)):
+        for s in range(len(ambiguous_characters)):
+            if chars[i] == ambiguous_characters[s]:
+                найти метод для исключения
+
+print(chars)
+print(chars)
+# # def generate_password():
+# #
+# #
+# #
+# # print(generate_password)
+#
+#
+#
+# #     for i in range(long):
+# #
+# #     length
+# #     chars
+# #
+# #
+# # for i in range(quantity):
+# #     print(enerate_password)
+# #*******************************************
+
+a = 'abcdefghijklmnopiqrstuvwoxyz'
+x = 'il1Lo0O'
+for i in range(len(a)):
+    for s in range(len(x)):
+        if a[i] == x[s]:
+            print(a[i], x[s])
