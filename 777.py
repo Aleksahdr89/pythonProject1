@@ -35,10 +35,7 @@
 # number = randint(1, 100)
 # print('Добро пожаловать в числовую угадайку')
 #
-
-
-
-
+import random
 
 #Функция проверки корректности введенных данных
 #
@@ -167,6 +164,8 @@
 
 
 
+
+
 # Подключите модуль random;
 # Создайте строковые константы:
 # Напишите функцию generate_password(), которая принимает два аргумента:
@@ -176,74 +175,96 @@
 # и возвращает пароль.
 # Используя цикл for, сгенерируйте необходимое количество паролей.
 
-# #*******************************************
-from random import *
+# Заголовок программы
+# Подключите модуль random;
+# Создайте строковые константы:
+# digits: 0123456789;
+# lowercase_letters: abcdefghijklmnopqrstuvwxyz;
+# uppercase_letters: ABCDEFGHIJKLMNOPQRSTUVWXYZ;
+# punctuation: !#$%&*+-=?@^_.
+# Создайте переменную chars = '', которая будет содержать все символы, которые могут быть в генерируемом пароле.
 
+
+# Считывание пользовательских данных
+# Программа должна запрашивать у пользователя следующую информацию:
+#
+# Количество паролей для генерации;
+# Длину одного пароля;
+# Включать ли цифры 0123456789?
+# Включать ли прописные буквы ABCDEFGHIJKLMNOPQRSTUVWXYZ?
+# Включать ли строчные буквы abcdefghijklmnopqrstuvwxyz?
+# Включать ли символы !#$%&*+-=?@^_?
+# Исключать ли неоднозначные символы il1Lo0O?
+
+
+# Генерации пароля
+# Напишите функцию generate_password(), которая принимает два аргумента:
+#
+# length: длину пароля;
+# chars: алфавит из символов которого состоит пароль;
+# и возвращает пароль.
+#
+# Используя цикл for, сгенерируйте необходимое количество паролей.
+
+# #*******************************************
+
+# переменные на добавления в список символов через запрос о необходимости у пользователя # Заголовок программы
 digits = '0123456789'
 lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'
 uppercase_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 punctuation = '!#$%&*+-=?@^_'
-ambiguous_characters = 'il1Lo0O'
-chars = ''
 
+ambiguous_characters = 'il1Lo0O' # неоднозначные символы
+
+chars = '' #  список символов
+s = '' #  переменная для перезаписи без неоднозначных символов
+
+
+#************************   генерируем список символов   (chars) Считывание пользовательских данных
 quantity = int(input('Количество паролей для генерации : '))
 # print(quantity)
-long = int(input('Длину одного пароля : ')) #
+length = int(input('Длину одного пароля : ')) #
 # print(long)
 
 numbers = (input('Включать ли цифры  ? да или нет : ').lower()) #
-print('цифры будут включены в пароль')
-small_letter = (input('Включать ли строчные буквы ? да или нет : ').lower()) #
-print('строчные буквы будут включены в пароль')
-big_letter = (input('Включать ли прописные буквы ? да или нет : ').lower()) #
-print('прописные буквы будут включены в пароль')
-symbol = (input('Включать ли символы ? да или нет : ').lower()) #
-print('символы будут включены в пароль')
-symbol_ambiguous = (input('Исключать ли неоднозначные символы ? да или нет : ').lower()) #
-print('неоднозначные символы будут исключены из пароля')
-
 if numbers == 'да':
     chars += digits
-    # print('цифры будут включены в пароль')
-elif small_letter == 'да':
+    print('цифры будут включены в пароль')
+small_letter = (input('Включать ли строчные буквы ? да или нет : ').lower()) #
+
+if small_letter == 'да':
     chars += lowercase_letters
-    # print('строчные буквы будут включены в пароль')
-elif big_letter == 'да':
+    print('строчные буквы будут включены в пароль')
+big_letter = (input('Включать ли прописные буквы ? да или нет : ').lower()) #
+
+if big_letter == 'да':
     chars += uppercase_letters
-    # print('прописные буквы будут включены в пароль')
-elif symbol == 'да':
+    print('прописные буквы будут включены в пароль')
+symbol = (input('Включать ли символы ? да или нет : ').lower()) #
+
+if symbol == 'да':
     chars += punctuation
-    # print('символы будут включены в пароль')
-elif symbol_ambiguous == 'да':
-    # print('неоднозначные символы будут исключены из пароля')
+    print('символы будут включены в пароль')
+
+symbol_ambiguous = (input('Исключать ли неоднозначные символы ? да или нет : ').lower()) #
+if symbol_ambiguous == 'да':
     for i in range(len(chars)):
-        for s in range(len(ambiguous_characters)):
-            if chars[i] == ambiguous_characters[s]:
-                найти метод для исключения
+        if not chars[i] in ambiguous_characters:
+            s += chars[i]
+    chars = s # перезаписали список символов , без неоднозначных символов .
+print('неоднозначные символы будут исключены из пароля')
 
-print(chars)
-print(chars)
-# # def generate_password():
-# #
-# #
-# #
-# # print(generate_password)
-#
-#
-#
-# #     for i in range(long):
-# #
-# #     length
-# #     chars
-# #
-# #
-# # for i in range(quantity):
-# #     print(enerate_password)
-# #*******************************************
+#************************   сгенерировали список символов (chars)
 
-a = 'abcdefghijklmnopiqrstuvwoxyz'
-x = 'il1Lo0O'
-for i in range(len(a)):
-    for s in range(len(x)):
-        if a[i] == x[s]:
-            print(a[i], x[s])
+import random # вызов модуля
+
+def generate(): # функция по созданию пароля # Генерации пароля
+    password = ''
+    for _ in range(length):
+        password += random.choice(chars) # выводит случайный элемент из строки и добовляет его в переменную
+    return password
+
+
+for _ in range(quantity): # вызов функции нужно количество паролей # вывод паролей
+    print()
+    print(generate())
