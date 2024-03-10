@@ -349,6 +349,7 @@ print(y.lstrip())
 
 # Верхний код работает коректно !!!!!
 
+
 # elif direction == 'шифрование' and language == 'ен':
 #     for i in range(len(text)):
 #         for q in range(len(en)):
