@@ -317,38 +317,53 @@
 
 ru = 'абвгдежзийклмнопрстуфхцчшщъыьэюяабвгдежзийклмнопрстуфхцчшщъыьэюя'
 RU = 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
-EN = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-en = 'abcdefghijklmnopqrstuvwxyz'
+EN = 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'
+en = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
 
 
-direction = input('шифрование or дешифрование ? ') # шифрование или дешифрование;
+direction = input('ш or дш ? ') # шифрование или дешифрование;
 language = input('ру or ен ? ') # язык
-step = int(input('Введи число на которое нужно сдвинуть текст ')) # шаг сдвига
+
+step = int(input('Введи число от 1 до 32 , на которое нужно сдвинуть текст ')) # шаг сдвига
+
 text = input('Введите текст который нужно зашифровать' )
 y = ''
 
 
-if direction == 'шифрование' and language == 'ру':
+if direction == 'ш' and language == 'ру' and 0 < step < 32:
     for i in range(len(text)):
         for q in range(len(ru)):
-            if text[i] == ru[q]:
-                y += (ru[q + step])
+            if text[i].isalpha():
+                if text[i] == ru[q]:
+                    y += ru[q + step]
+                    break
+                elif text[i] == RU[q]:
+                    y += ' ' + RU[q + step]
+                    break
+            else:
+                y += text[i]
                 break
-            elif text[i] == RU[q]:
-                y += (RU[q + step])
-                break
-elif direction == 'шифрование' and language == 'en':
-    for i in range(len(text)):
-        for q in range(len(en)):
-            if text[i] == en[q]:
-                y += (en[q + step])
-                break
-            elif text[i] == EN[q]:
-                y += (EN[q + step])
-                break
-elif direction == 'дешифрование':
-    print('В РАЗРАБОТКЕ')
-print(y)
+else:
+    print('Введенны некоректные данные, повторите запрос')
+print(y.lstrip())
+
+# Верхний код работает коректно !!!!!
+
+# elif direction == 'шифрование' and language == 'ен':
+#     for i in range(len(text)):
+#         for q in range(len(en)):
+#             if text[i] == en[q]:
+#                 y += (en[q + step])
+#                 break
+#             elif text[i] == EN[q]:
+#                 y += EN[q + step]
+#                 break
+#             elif text[i] != EN[q] and text[i] != en[q]:
+#                 y += text[i]
+#                 break
+# elif direction == 'дешифрование':
+#     print('В РАЗРАБОТКЕ')
+# print(y)
 
 
 
