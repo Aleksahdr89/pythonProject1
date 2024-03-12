@@ -37,7 +37,7 @@
 #
 # import random
 
-#Функция проверки корректности введенных данных
+# Функция проверки корректности введенных данных
 #
 # Напишите функцию is_valid() в которую передается один строковый аргумент.
 # Функция возвращает значение True если переданный аргумент является целым числом от 1 до 100
@@ -58,7 +58,7 @@
 
 
 # Основной цикл программы
-#
+
 # 1) Организуйте цикл, который будет запрашивать у пользователя данные =
 # (цикл может быть бесконечным (while True) или может использовать сигнальную метку с последующим переключением,
 # после угадывания числа);
@@ -315,98 +315,143 @@
 # при сдвиге на одну позицию вправо будет преобразован в: "Фнпн Спттйя ож рпоауэ".
 
 
-ru = 'абвгдежзийклмнопрстуфхцчшщъыьэюяабвгдежзийклмнопрстуфхцчшщъыьэюя'
-RU = 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
-EN = 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'
-en = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
-
-
-direction = input('ш or дш ? ') # шифрование или дешифрование;
-language = input('ру or ен ? ') # язык
-
-step = int(input('Введи число от 0 до 32 , на которое нужно сдвинуть текст ')) # шаг сдвига он же ключ для дешифрования
-
-text = input('Введите текст который нужно зашифровать' )
-y = ''
-x = ''
-
-if direction == 'ш' and language == 'ру' and 0 < step < 32:
-    for i in range(len(text)):
-        for q in range(len(ru)):
-            if text[i].isalpha(): # с функцией для проверки текста на состав
-                # (правда если число состоит только из буквенных символов)
-                if text[i] == ru[q]:
-                    y += ru[q + step]
-                    break
-                elif text[i] == RU[q]:
-                    y += ' ' + RU[q + step]
-                    break
-            else:
-                y += text[i]
-                break
-elif direction != 'ш' and language != 'ру' and 0 > step or step > 32:
-    print('Введенны некоректные данные, повторите запрос')
-print(y.lstrip()) # вывод c применениев функции по убиранию пробела в начале текста
-
-
-# Верхний код шифрование ру
-# НИЖНИК КОД ДЕШИФРОВАНИЕ ру
-
-if direction == 'дш' and language == 'ру' and 0 < step < 32:
-    for i in range(len(text)):
-        for q in range(len(ru)):
-            if text[i].isalpha():  # с функцией для проверки текста на состав
-            # (правда если число состоит только из буквенных символов)
-                if text[i] == ru[q]:
-                    x += ru[q - step]
-                    break
-                elif text[i] == RU[q]:
-                    x += ' ' + RU[q - step]
-                    break
-            else:
-                x += text[i]
-                break
-    print(x.lstrip())
-
-#==========================================================================
-
-if direction == 'ш' and language == 'ен' and 0 < step < 26:
-    for i in range(len(text)):
-        for q in range(len(en)):
-            if text[i].isalpha(): # с функцией для проверки текста на состав
-                # (правда если число состоит только из буквенных символов)
-                if text[i] == en[q]:
-                    y += en[q + step]
-                    break
-                elif text[i] == EN[q]:
-                    y += ' ' + EN[q + step]
-                    break
-            else:
-                y += text[i]
-                break
-elif direction != 'ш' and language != 'ру' and 0 > step or step > 32:
-    print('Введенны некоректные данные, повторите запрос')
-print(y.lstrip()) # вывод c применениев функции по убиранию пробела в начале текста
-
-# Верхний код шифрование ен
-# НИЖНИК КОД ДЕШИФРОВАНИЕ ен
-
-if direction == 'дш' and language == 'ен' and 0 < step < 26:
-    for i in range(len(text)):
-        for q in range(len(en)):
-            if text[i].isalpha():  # с функцией для проверки текста на состав
-            # (правда если число состоит только из буквенных символов)
-                if text[i] == en[q]:
-                    x += en[q - step]
-                    break
-                elif text[i] == EN[q]:
-                    x += ' ' + EN[q - step]
-                    break
-            else:
-                x += text[i]
-                break
-    print(x.lstrip())
-
-
-
-#==========================================================================
+# ru = 'абвгдежзийклмнопрстуфхцчшщъыьэюяабвгдежзийклмнопрстуфхцчшщъыьэюя'
+# RU = 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
+# EN = 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'
+# en = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
+#
+#
+# direction = input('ш or дш ? ') # шифрование или дешифрование;
+# language = input('ру or ен ? ') # язык
+#
+# step = int(input('Введи число от 0 до 32 , на которое нужно сдвинуть текст ')) # шаг сдвига он же ключ для дешифрования
+#
+# text = input('Введите текст который нужно зашифровать' )
+# y = ''
+# x = ''
+#
+# if direction == 'ш' and language == 'ру' and 0 < step < 32:
+#     for i in range(len(text)):
+#         for q in range(len(ru)):
+#             if text[i].isalpha(): # с функцией для проверки текста на состав
+#                 # (правда если число состоит только из буквенных символов)
+#                 if text[i] == ru[q]:
+#                     y += ru[q + step]
+#                     break
+#                 elif text[i] == RU[q]:
+#                     y += ' ' + RU[q + step]
+#                     break
+#             else:
+#                 y += text[i]
+#                 break
+# elif direction != 'ш' and language != 'ру' and 0 > step or step > 32:
+#     print('Введенны некоректные данные, повторите запрос')
+# print(y.lstrip()) # вывод c применениев функции по убиранию пробела в начале текста
+#
+#
+# # Верхний код шифрование ру
+# # НИЖНИК КОД ДЕШИФРОВАНИЕ ру
+#
+# if direction == 'дш' and language == 'ру' and 0 < step < 32:
+#     for i in range(len(text)):
+#         for q in range(len(ru)):
+#             if text[i].isalpha():  # с функцией для проверки текста на состав
+#             # (правда если число состоит только из буквенных символов)
+#                 if text[i] == ru[q]:
+#                     x += ru[q - step]
+#                     break
+#                 elif text[i] == RU[q]:
+#                     x += ' ' + RU[q - step]
+#                     break
+#             else:
+#                 x += text[i]
+#                 break
+#     print(x.lstrip())
+#
+# #==========================================================================
+#
+# if direction == 'ш' and language == 'ен' and 0 < step < 26:
+#     for i in range(len(text)):
+#         for q in range(len(en)):
+#             if text[i].isalpha(): # с функцией для проверки текста на состав
+#                 # (правда если число состоит только из буквенных символов)
+#                 if text[i] == en[q]:
+#                     y += en[q + step]
+#                     break
+#                 elif text[i] == EN[q]:
+#                     y += ' ' + EN[q + step]
+#                     break
+#             else:
+#                 y += text[i]
+#                 break
+# elif direction != 'ш' and language != 'ру' and 0 > step or step > 32:
+#     print('Введенны некоректные данные, повторите запрос')
+# print(y.lstrip()) # вывод c применениев функции по убиранию пробела в начале текста
+#
+# # Верхний код шифрование ен
+# # НИЖНИК КОД ДЕШИФРОВАНИЕ ен
+#
+# if direction == 'дш' and language == 'ен' and 0 < step < 26:
+#     for i in range(len(text)):
+#         for q in range(len(en)):
+#             if text[i].isalpha():  # с функцией для проверки текста на состав
+#             # (правда если число состоит только из буквенных символов)
+#                 if text[i] == en[q]:
+#                     x += en[q - step]
+#                     break
+#                 elif text[i] == EN[q]:
+#                     x += ' ' + EN[q - step]
+#                     break
+#             else:
+#                 x += text[i]
+#                 break
+#     print(x.lstrip())
+#
+#
+#
+# #==============================================================
+# #==============================================================
+# #==============================================================
+# На вход программе подается строка текста на английском языке,
+# в которой нужно зашифровать все слова.
+# Каждое слово строки следует зашифровать с помощью шифра Цезаря
+# (циклического сдвига на длину этого слова).
+# Строчные буквы при этом остаются строчными,
+# а прописные – прописными. Гарантируется,
+# что между различными словами присутствует один пробел.
+# EN = 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'
+# en = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
+# s = input()
+# s1 = s.split()
+# x = ''
+# t = ''
+# b = [] # длина здвига
+# for i in range(len(s)):
+#     if s[i].isalpha():
+#         x += 'a'
+#     else:
+#         x += ' '
+# y = x.split() # СОЛИЧЕСТВО КАЖДОГО СЛОВА
+# for i in range(len(y)):
+#     c = len(y[i])
+#     b.append(c)
+#
+# for i in range(len(s1)): # КОЛИЧЕСТВО СЛОВ В СПИСКЕ
+#     c = s1[i] + ' '
+#     p = b[i] # длина слова
+#     for r in range(len(c)):
+#         for q in range(len(en)): # КОЛИЧЕСТВО АЛФАВИТА
+#             if c[r].isalpha():
+#                 if en[q] == c[r]:
+#                     t += en[q + p]
+#                     break
+#                 elif EN[q] == c[r]:
+#                     t += EN[q + p]
+#                     break
+#             else:
+#                 t += c[r]
+#                 break
+# print(t)
+# #=============================================================
+# #=============================================================
+# #=============================================================
