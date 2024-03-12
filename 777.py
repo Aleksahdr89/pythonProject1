@@ -324,16 +324,17 @@ en = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz'
 direction = input('ш or дш ? ') # шифрование или дешифрование;
 language = input('ру or ен ? ') # язык
 
-step = int(input('Введи число от 1 до 32 , на которое нужно сдвинуть текст ')) # шаг сдвига
+step = int(input('Введи число от 0 до 32 , на которое нужно сдвинуть текст ')) # шаг сдвига он же ключ для дешифрования
 
 text = input('Введите текст который нужно зашифровать' )
 y = ''
-
+x = ''
 
 if direction == 'ш' and language == 'ру' and 0 < step < 32:
     for i in range(len(text)):
         for q in range(len(ru)):
-            if text[i].isalpha():
+            if text[i].isalpha(): # с функцией для проверки текста на состав
+                # (правда если число состоит только из буквенных символов)
                 if text[i] == ru[q]:
                     y += ru[q + step]
                     break
@@ -343,31 +344,69 @@ if direction == 'ш' and language == 'ру' and 0 < step < 32:
             else:
                 y += text[i]
                 break
-else:
+elif direction != 'ш' and language != 'ру' and 0 > step or step > 32:
     print('Введенны некоректные данные, повторите запрос')
-print(y.lstrip())
-
-# Верхний код работает коректно !!!!!
+print(y.lstrip()) # вывод c применениев функции по убиранию пробела в начале текста
 
 
-# elif direction == 'шифрование' and language == 'ен':
-#     for i in range(len(text)):
-#         for q in range(len(en)):
-#             if text[i] == en[q]:
-#                 y += (en[q + step])
-#                 break
-#             elif text[i] == EN[q]:
-#                 y += EN[q + step]
-#                 break
-#             elif text[i] != EN[q] and text[i] != en[q]:
-#                 y += text[i]
-#                 break
-# elif direction == 'дешифрование':
-#     print('В РАЗРАБОТКЕ')
-# print(y)
+# Верхний код шифрование ру
+# НИЖНИК КОД ДЕШИФРОВАНИЕ ру
+
+if direction == 'дш' and language == 'ру' and 0 < step < 32:
+    for i in range(len(text)):
+        for q in range(len(ru)):
+            if text[i].isalpha():  # с функцией для проверки текста на состав
+            # (правда если число состоит только из буквенных символов)
+                if text[i] == ru[q]:
+                    x += ru[q - step]
+                    break
+                elif text[i] == RU[q]:
+                    x += ' ' + RU[q - step]
+                    break
+            else:
+                x += text[i]
+                break
+    print(x.lstrip())
+
+#==========================================================================
+
+if direction == 'ш' and language == 'ен' and 0 < step < 26:
+    for i in range(len(text)):
+        for q in range(len(en)):
+            if text[i].isalpha(): # с функцией для проверки текста на состав
+                # (правда если число состоит только из буквенных символов)
+                if text[i] == en[q]:
+                    y += en[q + step]
+                    break
+                elif text[i] == EN[q]:
+                    y += ' ' + EN[q + step]
+                    break
+            else:
+                y += text[i]
+                break
+elif direction != 'ш' and language != 'ру' and 0 > step or step > 32:
+    print('Введенны некоректные данные, повторите запрос')
+print(y.lstrip()) # вывод c применениев функции по убиранию пробела в начале текста
+
+# Верхний код шифрование ен
+# НИЖНИК КОД ДЕШИФРОВАНИЕ ен
+
+if direction == 'дш' and language == 'ен' and 0 < step < 26:
+    for i in range(len(text)):
+        for q in range(len(en)):
+            if text[i].isalpha():  # с функцией для проверки текста на состав
+            # (правда если число состоит только из буквенных символов)
+                if text[i] == en[q]:
+                    x += en[q - step]
+                    break
+                elif text[i] == EN[q]:
+                    x += ' ' + EN[q - step]
+                    break
+            else:
+                x += text[i]
+                break
+    print(x.lstrip())
 
 
 
-
-
-
+#==========================================================================
