@@ -504,36 +504,35 @@
 # Подключите модуль random;
 # Создайте глобальный список word_list,
 # содержащий слова, которые будут использоваться в игре.
+
 import random
+word_list = ['кот', 'собака', 'хомяк'] # слова, которые будут использоваться в игре.
 
-# ПЕРЕМЕННЫЕ
-word_list = ['asd', 'bsdfdsf', 'csdfsdf', 'dsdfsdf', 'esdfs', 'fsdsdf', 'sdfsdfsdfg', 'hsdfdsf', 'sdfdsi', 'dj', 'kdd', 'sdfdsl', 'sdfsdfm', 'sdfsdfsdfn', 'osdfsdf', 'psdfsdf', 'qsdfds'] # слова, которые будут использоваться в игре.
-tries = 0 # количество попыток угадывания слова
-guessed = False # сигнальная метка
-guessed_letters = [] # список уже названных букв
-guessed_words = [] # список уже названных слов
-# ПЕРЕМЕННЫЕ
-word = ''
-
-
-def get_word(): #  случайное слово из списка word_list в верхнем регистре.
+#  случайное слово из списка word_list в верхнем регистре.
+def get_word():
     word = random.randint(0, len(word_list))
     return word_list[word].upper()
-word = get_word()
-word_completion = '_' * len(word) # строка, содержащая символы _ на каждую букву задуманного слова
+#  случайное слово из списка word_list в верхнем регистре.
 
+q = get_word()
+
+
+tries = 0
+
+
+# функция получения текущего состояния
 def display_hangman(tries):
-    stages = [  # финальное состояние: голова, торс, обе руки, обе ноги
-                '''
+    stages = [
+        '''
                    
                          
                          O
                         \\|/
                          |
                         / \\
-                ''',
-                # голова, торс, обе руки, одна нога
-                '''
+                   
+                   ''',
+        '''
                    
                          
                          O
@@ -542,8 +541,8 @@ def display_hangman(tries):
                         / 
                    
                 ''',
-                # голова, торс, обе руки
-                '''
+
+        '''
                    
                          
                          O
@@ -552,8 +551,7 @@ def display_hangman(tries):
                          
                    
                 ''',
-                # голова, торс и одна рука
-                '''
+        '''
                    
                          
                          O
@@ -562,54 +560,83 @@ def display_hangman(tries):
                         
                    
                 ''',
-                # голова и торс
-                '''
+        '''
                    
-                         |
+                         
                          O
                          |
                          |
                         
                    
                 ''',
-                # голова
-                '''
-                   
+        '''
+    
+    
+                         O
                          |
+                         
+    
+    
+                ''',
+        '''
+                   
+                         
                          O
                        
                          
                         
                    
                 ''',
-                # начальное состояние
-                '''
-                   
-                         |
-                         
-                       
-                         
-                        
-                   
-                '''
     ]
     return stages[tries]
 
+y = display_hangman(tries)
 
 
+def play():
 
+    print('Давайте играть в угадайку слов!', y)
 
-# Функция play() в самом начале должна:
-# 1) отобразить текст 'Давайте играть в угадайку слов!';
-# 2) отобразить текущее состояние игры,
-# распечатав результат вызова функции display_hangman() с начальным количеством допустимых промахов tries = 6;
-# 3) отобразить начальное слово word_completion в виде строки с символом _ на каждую букву задуманного слова;
-def play(): # принимает в качестве аргумента слово word, сгенерированное функцией  get_word().
-    print('Давайте играть в угадайку слов!') # отобразить текст 'Давайте играть в угадайку слов!';
-    print(display_hangman(tries)) # вызов функцыиии
-    print('Количество букв в загадоном мной слове', len(word_completion))
+    word_completion = '_ ' * len(q), 'слово состоит из', len(q), 'букв'  # строка, содержащая символы _ на каждую букву задуманного слова
     print(word_completion)
+
+
+    print('количество твоих попыток',tries, 'из 7')
+
+    return tries
+
+
+
+    # guessed = False  # сигнальная метка
+    # guessed_letters = []  # список уже названных букв
+    # guessed_words = []  # список уже названных слов
+    # tries = 6  # количество попыток
+
+
 
 print(play())
 
-user = input('Введи букву или слово \n Ввод : ')
+guessed_letters = [' ']               # список уже названных букв
+guessed = False # сигнальная метка
+
+
+while guessed != True:
+    user = input('Введи букву : ')
+    print(q)
+
+    if user in guessed_letters:
+        print('уже было')
+        continue
+    elif user in q:
+        print('da')
+    else:
+    #убираем части человечка
+        tries += 1
+        y = display_hangman(tries)
+    play()
+    # убираем части человечка
+
+    guessed_letters.append(user)  # список уже названных букв
+
+
+
