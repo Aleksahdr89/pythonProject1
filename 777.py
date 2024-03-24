@@ -515,6 +515,7 @@ def get_word():
 #  случайное слово из списка word_list в верхнем регистре.
 
 q = get_word()
+print(q)
 
 
 tries = 0
@@ -591,52 +592,55 @@ def display_hangman(tries):
     return stages[tries]
 
 y = display_hangman(tries)
-
-
+print('Давайте играть в угадайку слов!')
+print('Загаданное мной слово состоит из',('_ ' * len(q)), len(q), 'букв')  # строка, содержащая символы _ на каждую букву задуманного слова
+print('Будь внемателен ты можешь допусть всего 7 неправельных ответов')
+word_completion = ''
+d = []
+f = '_ ' * len(q)
+f = f.split()
+# print(f, '!')
 def play():
-
-    print('Давайте играть в угадайку слов!', y)
-
-    word_completion = '_ ' * len(q), 'слово состоит из', len(q), 'букв'  # строка, содержащая символы _ на каждую букву задуманного слова
-    print(word_completion)
-
-
-    print('количество твоих попыток',tries, 'из 7')
-
-    return tries
-
-
-
-    # guessed = False  # сигнальная метка
-    # guessed_letters = []  # список уже названных букв
-    # guessed_words = []  # список уже названных слов
-    # tries = 6  # количество попыток
-
-
+    print(y)
+    # word_completion
+    # d = '_ ' * len(q), 'слово состоит из', len(q), 'букв'  # строка, содержащая символы _ на каждую букву задуманного слова
+    print(*f)
+    # print(word_completion)
+    # return tries
 
 print(play())
+
+
+
+
 
 guessed_letters = [' ']               # список уже названных букв
 guessed = False # сигнальная метка
 
-
 while guessed != True:
     user = input('Введи букву : ')
+    user = user.upper()
     print(q)
+    x = q.split
 
     if user in guessed_letters:
         print('уже было')
         continue
     elif user in q:
-        print('da')
+        for i in range(len(q)):
+            if user == q[i]:
+                del f[i]
+                f.insert(i, user)
     else:
     #убираем части человечка
+        print('Такой буквы нет в загаданом слове')
         tries += 1
         y = display_hangman(tries)
     play()
     # убираем части человечка
 
     guessed_letters.append(user)  # список уже названных букв
+print('МОЛОДЕЦ')
 
 
 
